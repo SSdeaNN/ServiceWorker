@@ -26,18 +26,24 @@
             <div class="content">
                 <h2>Bienvenido a mi PWA</h2>
                 <p>Esta Progressive Web App ofrece una experiencia rápida y confiable incluso cuando estés desconectado. Prueba la instalación y la funcionalidad offline.</p>
-                <div style="margin-top:1rem">
-                    <a class="btn" id="try-btn" href="#">Probar PWA</a>
-                </div>
                 <div class="meta">Funciona mejor si sirves la página desde un servidor local (Live Server). Revisa la pestaña "Application" en las DevTools para ver el Service Worker.</div>
             </div>
             <aside class="aside center">
                 <img src="images/logo.png" alt="Logo grande" style="width:140px;height:140px;border-radius:14px">
+                    
             </aside>
         </section>
     </main>
 
     <footer>
+    </body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(function() {
+                document.getElementById('sw-status').style.display = 'block';
+            });
+        }
+    </script>
         <p>Desarrollado por David Canul</p>
     </footer>
 

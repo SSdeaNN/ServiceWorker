@@ -1,36 +1,36 @@
 const CACHE_NAME = 'pwa-cache-v1';
-const urlsToCahe = [
-    '/',
-    '/index',
-    '/manifest.json',
-    '/images/logo.png'
+const urlsToCache = [
+    './',
+    './index.html',
+    './manifest.json',
+    './styles.css',
+    './app.js',
+    './images/logo.png'
 ];
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
         .then((cache) => {
-            console.log('Se han Cacheado los archivos LOLLLLLLLLL');
-            return cache.addAll(urlsToCahe);
-
+            console.log('Caching files for offline use');
+            return cache.addAll(urlsToCache);
         })
-    )
+    );
 });
 
-self.addEventListener('activate', (event)=>{
+self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
-
     event.waitUntil(
-        caches.keys().then((cacheNAmes) =>{
+        caches.keys().then((cacheNames) => {
             return Promise.all(
-                cacheNAmes.map((cacheNAme) => {
-                    if (!cacheWhitelist.includes(cacheNAme)) {
-                        return caches.delete(cacheNAme);
+                cacheNames.map((cacheName) => {
+                    if (!cacheWhitelist.includes(cacheName)) {
+                        return caches.delete(cacheName);
                     }
                 })
-            )
+            );
         })
-    )
+    );
 });
 
 self.addEventListener('fetch', (event) => {
@@ -40,6 +40,11 @@ self.addEventListener('fetch', (event) => {
                 return cachedResponse;
             }
             return fetch(event.request);
+        }).catch(() => {
+            // En caso de fallo (offline y recurso no cacheado), si es navegación devolvemos index.html
+            if (event.request.mode === 'navigate') {
+                return caches.match('./index.html');
+            }
         })
     );
 });
