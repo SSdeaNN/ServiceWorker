@@ -4,18 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi PMA</title>
+    <meta name="theme-color" content="#071029">
+    <!-- Tipografía moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a mi PMA</h1>
-        <img src="images/logo.png" alt="Logo de mi app">
+        <div class="brand">
+            <img src="images/logo.png" alt="Logo de mi app">
+            <div>
+                <h1>Mi PWA</h1>
+                <div style="font-size:.9rem;color:var(--muted);">Añade esta app a tu pantalla de inicio</div>
+            </div>
+        </div>
     </header>
+
     <main>
-        <p>¡Esta es una PWA! Puedes añadirla a tu pantalla de inicio.</p>
+        <section class="hero">
+            <div class="content">
+                <h2>Bienvenido a mi PWA</h2>
+                <p>Esta Progressive Web App ofrece una experiencia rápida y confiable incluso cuando estés desconectado. Prueba la instalación y la funcionalidad offline.</p>
+                <div style="margin-top:1rem">
+                    <a class="btn" id="try-btn" href="#">Probar PWA</a>
+                </div>
+                <div class="meta">Funciona mejor si sirves la página desde un servidor local (Live Server). Revisa la pestaña "Application" en las DevTools para ver el Service Worker.</div>
+            </div>
+            <aside class="aside center">
+                <img src="images/logo.png" alt="Logo grande" style="width:140px;height:140px;border-radius:14px">
+            </aside>
+        </section>
     </main>
+
     <footer>
         <p>Desarrollado por David Canul</p>
     </footer>
